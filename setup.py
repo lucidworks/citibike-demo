@@ -37,10 +37,10 @@ def create_fields(args):
     fields.create(["name=stoptime", "field_type=date", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=start_station_id", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=start_station_name", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=start_location", "field_type=point", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=start_location", "field_type=location", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=end_station_id", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=end_station_name", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=end_station_location", "field_type=point", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=end_station_location", "field_type=location", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=bike_id", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=user_type", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=birth_year", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
@@ -167,7 +167,7 @@ p = optparse.OptionParser()
 p.add_option("-i", "--input", action="store", dest="input")
 p.add_option("--api_host", action="store", dest="host", default="localhost")
 p.add_option("--api_port", action="store", dest="api_port", default="8888")
-p.add_option("-l", "--collection", action="store", dest="collection") #name the collection
+p.add_option("-l", "--collection", action="store", dest="collection", default="citibike") #name the collection
 p.add_option("-f", "--fields", action="store_true", dest="fields")
 
 opts, args = p.parse_args()

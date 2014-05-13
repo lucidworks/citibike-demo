@@ -245,7 +245,7 @@
     },
     {
       "title": "Filter",
-      "height": "150px",
+      "height": "400px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
@@ -261,15 +261,16 @@
             "ids": [
               0
             ],
-            "query": "q=*:*&wt=json&rows=500&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&sort=starttime desc",
+            "query": "q=*:*&wt=json&rows=7000&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&fq=start_location_0_d:[40 TO 45] AND start_location_1_d:[-80 TO -73]&sort=starttime desc",
             "custom": ""
           },
-          "size": 500,
+          "size": 700,
           "spyable": true,
-          "lat_start": "",
-          "lat_end": "",
-          "lon_start": "",
-          "lon_end": "",
+          "lat_start": 40,
+          "lat_end": 45,
+          "lon_start": -80,
+          "lon_end": -73,
+          "dist": 100,
           "field": "start_location"
         }
       ]
