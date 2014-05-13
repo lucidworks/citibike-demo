@@ -1,0 +1,330 @@
+{
+  "title": "Citi Bike Demo",
+  "services": {
+    "query": {
+      "idQueue": [
+        1
+      ],
+      "list": {
+        "0": {
+          "query": "*:*",
+          "alias": "",
+          "color": "#7EB26D",
+          "id": 0,
+          "pin": false,
+          "type": "lucene"
+        }
+      },
+      "ids": [
+        0
+      ]
+    },
+    "filter": {
+      "idQueue": [
+        1
+      ],
+      "list": {
+        "0": {
+          "from": "2013-06-29T23:49:09.000Z",
+          "to": "2013-12-31T15:26:23.000Z",
+          "field": "starttime",
+          "type": "time",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 0
+        }
+      },
+      "ids": [
+        0
+      ]
+    }
+  },
+  "rows": [
+    {
+      "title": "Options",
+      "height": "50px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "title": "Set time span",
+          "error": "",
+          "span": 4,
+          "editable": true,
+          "group": [
+            "default"
+          ],
+          "type": "timepicker",
+          "mode": "absolute",
+          "time_options": [
+            "5m",
+            "15m",
+            "1h",
+            "6h",
+            "12h",
+            "24h",
+            "2d",
+            "7d",
+            "30d"
+          ],
+          "timespan": "24h",
+          "timefield": "starttime",
+          "timeformat": "",
+          "refresh": {
+            "enable": false,
+            "interval": 600,
+            "min": 3
+          },
+          "filter_id": 0,
+          "status": "Stable",
+          "time": {
+            "from": "06/29/2013 19:49:09",
+            "to": "12/31/2013 10:26:23"
+          }
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "query",
+          "loadingEditor": false,
+          "query": "*:*",
+          "pinned": true,
+          "history": [
+            "*:*",
+            "error"
+          ],
+          "remember": 10,
+          "title": "Search",
+          "def_type": ""
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "filtering",
+          "loadingEditor": false,
+          "title": "Filter"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "height": "100px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "starttime",
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&wt=json&rows=0&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&facet=true&facet.range=starttime&facet.range.start=2013-06-29T23:49:09.000Z/DAY&facet.range.end=2013-12-31T15:26:23.000Z%2B1DAY/DAY&facet.range.gap=%2B1DAY",
+            "custom": ""
+          },
+          "max_rows": 100000,
+          "value_field": "start_station_id",
+          "group_field": null,
+          "auto_int": true,
+          "resolution": 100,
+          "interval": "1d",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1M",
+            "1y"
+          ],
+          "fill": 0,
+          "linewidth": 3,
+          "timezone": "browser",
+          "spyable": true,
+          "zoomlinks": true,
+          "bars": false,
+          "stack": true,
+          "points": false,
+          "lines": true,
+          "legend": true,
+          "x-axis": true,
+          "y-axis": true,
+          "percentage": false,
+          "interactive": true,
+          "options": true,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": false
+          },
+          "title": "Totals",
+          "lines_smooth": false
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&wt=json&rows=0&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&facet=true&facet.field=gender&facet.range=starttime&facet.range.start=2013-06-29T23:49:09.000Z&facet.range.end=2013-12-31T15:26:23.000Z&facet.range.gap=%2B1DAY&facet.limit=10",
+            "custom": ""
+          },
+          "field": "gender",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "term",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "above",
+          "spyable": true,
+          "time_field": "starttime",
+          "title": "Gender"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&wt=json&rows=0&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&facet=true&facet.field=birth_year&facet.range=starttime&facet.range.start=2013-06-29T23:49:09.000Z&facet.range.end=2013-12-31T15:26:23.000Z&facet.range.gap=%2B1DAY&facet.limit=10",
+            "custom": ""
+          },
+          "field": "birth_year",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "term",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "above",
+          "spyable": true,
+          "time_field": "starttime",
+          "title": "Birth"
+        }
+      ]
+    },
+    {
+      "title": "Filter",
+      "height": "150px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "bettermap",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&wt=json&rows=500&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&sort=starttime desc",
+            "custom": ""
+          },
+          "size": 500,
+          "spyable": true,
+          "lat_start": "",
+          "lat_end": "",
+          "lon_start": "",
+          "lon_end": "",
+          "field": "start_location"
+        }
+      ]
+    },
+    {
+      "title": "Graph",
+      "height": "350px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": []
+    },
+    {
+      "title": "Events",
+      "height": "350px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": []
+    }
+  ],
+  "editable": true,
+  "failover": false,
+  "index": {
+    "interval": "none",
+    "pattern": "[logstash-]YYYY.MM.DD",
+    "default": "NO_TIME_FILTER_OR_INDEX_PATTERN_NOT_MATCHED"
+  },
+  "style": "light",
+  "panel_hints": true,
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": true,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": true,
+    "hide": false,
+    "dropdown_collections": false
+  },
+  "solr": {
+    "server": "http://localhost:3333/solr/",
+    "core_name": "citibike",
+    "core_list": [
+      "Finance",
+      "LucidWorksLogs",
+      "citibike",
+      "collection1",
+      "kibana-int",
+      "quickstart"
+    ]
+  }
+}
