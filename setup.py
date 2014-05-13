@@ -36,15 +36,15 @@ def create_fields(args):
     fields.create(["name=starttime", "field_type=date", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=stoptime", "field_type=date", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=start_station_id", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=start_station_name", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=start_location", "field_type=location", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=start_station_name", "field_type=text_en", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=start_station_location", "field_type=location", "indexed=true", "stored=true", "facet=true", "multi_valued=false", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=end_station_id", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=end_station_name", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=end_station_location", "field_type=location", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=end_station_name", "field_type=text_en", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=end_station_location", "field_type=location", "indexed=true", "stored=true", "facet=true", "multi_valued=false", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=bike_id", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=user_type", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
     fields.create(["name=birth_year", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
-    fields.create(["name=gender", "field_type=int", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
+    fields.create(["name=gender", "field_type=string", "indexed=true", "stored=true", "facet=true", "include_in_results=true"], FIELDS_URL)
 
 
 
@@ -57,20 +57,29 @@ def index(input_file):
         if line.startswith("#") == False:
             vals = line.strip().split(",")
             id = to_id(vals[1].replace("\"", "")) +"_" + to_id(vals[2].replace("\"", "")) + "_" + vals[3].replace("\"", "") + vals[7].replace("\"", "")
+            gender = vals[14].replace("\"", "")
+
+            if gender == "0":
+                gender = "NA"
+            elif gender == "1":
+                gender = "M"
+            else: #2
+                gender = "F"
+
             items = {"id": id,
                      "tripduration":vals[0].replace("\"", ""),
                      "starttime":datetimeformatstr(vals[1].replace("\"", "")),
                      "stoptime":datetimeformatstr(vals[2].replace("\"", "")),
                      "start_station_id": vals[3].replace("\"", ""),
                      "start_station_name": vals[4].replace("\"", ""),
-                     "start_location": vals[5].replace("\"", "") + "," + vals[6].replace("\"", ""),
+                     "start_station_location": vals[5].replace("\"", "") + "," + vals[6].replace("\"", ""),
                      "end_station_id": vals[7].replace("\"", ""),
                      "end_station_name": vals[8].replace("\"", ""),
-                     "end_location": vals[9].replace("\"", "") + "," + vals[10].replace("\"", ""),
+                     "end_station_location": vals[9].replace("\"", "") + "," + vals[10].replace("\"", ""),
                      "bikeid": vals[11].replace("\"", ""),
                      "user_type": vals[12].replace("\"", ""),
                      "birth_year": vals[13].replace("\"", "").replace("\\N", "-1"),
-                     "gender": vals[14].replace("\"", "")
+                     "gender": gender
             }
             buffer.append(items)
             i += 1

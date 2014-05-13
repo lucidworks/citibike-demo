@@ -1,5 +1,5 @@
 {
-  "title": "Citi Bike Demo",
+  "title": "Citi Bike Rides",
   "services": {
     "query": {
       "idQueue": [
@@ -21,12 +21,15 @@
     },
     "filter": {
       "idQueue": [
-        1
+        1,
+        2,
+        3,
+        4
       ],
       "list": {
         "0": {
-          "from": "2013-06-29T23:49:09.000Z",
-          "to": "2013-12-31T15:26:23.000Z",
+          "from": "2013-05-31T07:52:17.000Z",
+          "to": "2013-08-31T06:14:27.000Z",
           "field": "starttime",
           "type": "time",
           "mandate": "must",
@@ -51,7 +54,7 @@
         {
           "title": "Set time span",
           "error": "",
-          "span": 4,
+          "span": 6,
           "editable": true,
           "group": [
             "default"
@@ -69,7 +72,7 @@
             "7d",
             "30d"
           ],
-          "timespan": "24h",
+          "timespan": "30d",
           "timefield": "starttime",
           "timeformat": "",
           "refresh": {
@@ -80,8 +83,8 @@
           "filter_id": 0,
           "status": "Stable",
           "time": {
-            "from": "06/29/2013 19:49:09",
-            "to": "12/31/2013 10:26:23"
+            "from": "05/31/2013 03:52:17",
+            "to": "08/31/2013 02:14:27"
           }
         },
         {
@@ -94,31 +97,49 @@
           "pinned": true,
           "history": [
             "*:*",
-            "error"
+            "start_station:Union*"
           ],
           "remember": 10,
           "title": "Search",
           "def_type": ""
         },
         {
-          "error": false,
-          "span": 4,
+          "span": 2,
           "editable": true,
-          "type": "filtering",
+          "type": "hits",
           "loadingEditor": false,
-          "title": "Filter"
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&defType=lucid&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&wt=json&rows=0",
+            "basic_query": "",
+            "custom": ""
+          },
+          "style": {
+            "font-size": "32pt"
+          },
+          "arrangement": "horizontal",
+          "chart": "total",
+          "counter_pos": "above",
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "spyable": true,
+          "title": "Hits"
         }
       ]
     },
     {
-      "title": "",
-      "height": "100px",
+      "title": "Bike Trip Counts",
+      "height": "150px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
       "panels": [
         {
-          "span": 4,
+          "span": 6,
           "editable": true,
           "type": "histogram",
           "loadingEditor": false,
@@ -129,15 +150,15 @@
             "ids": [
               0
             ],
-            "query": "q=*:*&wt=json&rows=0&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&facet=true&facet.range=starttime&facet.range.start=2013-06-29T23:49:09.000Z/DAY&facet.range.end=2013-12-31T15:26:23.000Z%2B1DAY/DAY&facet.range.gap=%2B1DAY",
+            "query": "q=*:*&defType=lucid&wt=json&rows=0&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&facet=true&facet.range=starttime&facet.range.start=2013-05-31T07:52:17.000Z/DAY&facet.range.end=2013-08-31T06:14:27.000Z%2B1DAY/DAY&facet.range.gap=%2B12HOUR",
             "custom": ""
           },
           "max_rows": 100000,
-          "value_field": "start_station_id",
+          "value_field": null,
           "group_field": null,
           "auto_int": true,
           "resolution": 100,
-          "interval": "1d",
+          "interval": "12h",
           "intervals": [
             "auto",
             "1s",
@@ -158,10 +179,11 @@
           "timezone": "browser",
           "spyable": true,
           "zoomlinks": true,
-          "bars": false,
-          "stack": true,
+          "bars": true,
+          "stack": false,
           "points": false,
-          "lines": true,
+          "lines": false,
+          "lines_smooth": false,
           "legend": true,
           "x-axis": true,
           "y-axis": true,
@@ -172,12 +194,11 @@
             "value_type": "cumulative",
             "query_as_alias": false
           },
-          "title": "Totals",
-          "lines_smooth": false
+          "title": "Bike Trips"
         },
         {
           "error": false,
-          "span": 4,
+          "span": 6,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -186,48 +207,15 @@
             "ids": [
               0
             ],
-            "query": "q=*:*&wt=json&rows=0&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&facet=true&facet.field=gender&facet.range=starttime&facet.range.start=2013-06-29T23:49:09.000Z&facet.range.end=2013-12-31T15:26:23.000Z&facet.range.gap=%2B1DAY&facet.limit=10",
-            "custom": ""
-          },
-          "field": "gender",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 10,
-          "order": "term",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "pie",
-          "counter_pos": "above",
-          "spyable": true,
-          "time_field": "starttime",
-          "title": "Gender"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0
-            ],
-            "query": "q=*:*&wt=json&rows=0&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&facet=true&facet.field=birth_year&facet.range=starttime&facet.range.start=2013-06-29T23:49:09.000Z&facet.range.end=2013-12-31T15:26:23.000Z&facet.range.gap=%2B1DAY&facet.limit=10",
+            "query": "q=*:*&defType=lucid&wt=json&rows=0&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&facet=true&facet.field=birth_year&facet.range=starttime&facet.range.start=2013-05-31T07:52:17.000Z&facet.range.end=2013-08-31T06:14:27.000Z&facet.range.gap=%2B1DAY&facet.limit=100",
             "custom": ""
           },
           "field": "birth_year",
           "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 10,
-          "order": "term",
+          "missing": false,
+          "other": false,
+          "size": 100,
+          "order": "count",
           "style": {
             "font-size": "10pt"
           },
@@ -236,60 +224,210 @@
           "labels": true,
           "arrangement": "horizontal",
           "chart": "bar",
-          "counter_pos": "above",
+          "counter_pos": "none",
           "spyable": true,
           "time_field": "starttime",
-          "title": "Birth"
+          "title": "Birth Year"
         }
       ]
     },
     {
-      "title": "Filter",
-      "height": "400px",
+      "title": "Slicing and Dicing",
+      "height": "150px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
       "panels": [
         {
           "error": false,
-          "span": 4,
+          "span": 2,
           "editable": true,
-          "type": "bettermap",
+          "type": "terms",
           "loadingEditor": false,
           "queries": {
             "mode": "all",
             "ids": [
               0
             ],
-            "query": "q=*:*&wt=json&rows=7000&fq=starttime:[2013-06-29T23:49:09.000Z%20TO%202013-12-31T15:26:23.000Z]&fq=start_location_0_d:[40 TO 45] AND start_location_1_d:[-80 TO -73]&sort=starttime desc",
+            "query": "q=*:*&defType=lucid&wt=json&rows=0&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&facet=true&facet.field=gender&facet.range=starttime&facet.range.start=2013-05-31T07:52:17.000Z&facet.range.end=2013-08-31T06:14:27.000Z&facet.range.gap=%2B1DAY&facet.limit=10",
             "custom": ""
           },
-          "size": 700,
+          "field": "gender",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "none",
           "spyable": true,
-          "lat_start": 40,
-          "lat_end": 45,
-          "lon_start": -80,
-          "lon_end": -73,
-          "dist": 100,
-          "field": "start_location"
+          "time_field": "event_timestamp",
+          "title": "Gender"
+        },
+        {
+          "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&defType=lucid&wt=json&rows=0&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&facet=true&facet.field=user_type&facet.range=starttime&facet.range.start=2013-05-31T07:52:17.000Z&facet.range.end=2013-08-31T06:14:27.000Z&facet.range.gap=%2B1DAY&facet.limit=10",
+            "custom": ""
+          },
+          "field": "user_type",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "none",
+          "spyable": true,
+          "time_field": "starttime",
+          "title": "User Type"
+        },
+        {
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&defType=lucid&wt=json&rows=0&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&facet=true&facet.field=start_station_name&facet.range=starttime&facet.range.start=2013-05-31T07:52:17.000Z&facet.range.end=2013-08-31T06:14:27.000Z&facet.range.gap=%2B1DAY&facet.limit=20",
+            "custom": ""
+          },
+          "field": "start_station_name",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 20,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": false,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "none",
+          "spyable": true,
+          "time_field": "start_tim",
+          "title": "Start Station"
+        },
+        {
+          "error": false,
+          "span": 5,
+          "editable": true,
+          "type": "filtering",
+          "loadingEditor": false
         }
       ]
     },
     {
-      "title": "Graph",
-      "height": "350px",
+      "title": "BetterMapDemo",
+      "height": "650px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
-      "panels": []
+      "panels": [
+        {
+          "title": "End Station",
+          "span": 12,
+          "editable": true,
+          "tooltip": "end_station_id",
+          "group": [
+            "default"
+          ],
+          "field": "end_station_location",
+          "type": "bettermap",
+          "size": 7000,
+          "time_field": "starttime",
+          "lat_start": null,
+          "lat_end": null,
+          "lon_start": null,
+          "lon_end": null,
+          "dist": 100,
+          "sort": [
+            "starttime",
+            "desc"
+          ],
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "custom": "",
+            "query": "q=*:*&defType=lucid&wt=json&rows=500&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&sort=starttime desc"
+          },
+          "spyable": true,
+          "error": false
+        }
+      ]
     },
     {
-      "title": "Events",
-      "height": "350px",
+      "title": "",
+      "height": "250px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
-      "panels": []
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*:*&defType=lucid&wt=json&rows=0&fq=starttime:[2013-05-31T07:52:17.000Z%20TO%202013-08-31T06:14:27.000Z]&facet=true&facet.field=tripduration&facet.range=starttime&facet.range.start=2013-05-31T07:52:17.000Z&facet.range.end=2013-08-31T06:14:27.000Z&facet.range.gap=%2B1DAY&facet.limit=100",
+            "custom": ""
+          },
+          "field": "tripduration",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 100,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "none",
+          "spyable": true,
+          "time_field": "starttime",
+          "title": "Durations"
+        }
+      ]
     }
   ],
   "editable": true,
@@ -318,14 +456,16 @@
   },
   "solr": {
     "server": "http://localhost:3333/solr/",
-    "core_name": "citibike",
+    "core_name": "citibike2",
     "core_list": [
       "Finance",
       "LucidWorksLogs",
       "citibike",
+      "citibike2",
       "collection1",
       "kibana-int",
       "quickstart"
-    ]
+    ],
+    "global_params": "&defType=lucid"
   }
 }
